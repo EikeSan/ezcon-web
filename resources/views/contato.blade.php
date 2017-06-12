@@ -72,19 +72,17 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/contato') }}">Contato</a>
+                        <a href="{{ url('/register') }}">Register</a>
                     @endif
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    EzCon
+                    Contato
                 </div>
 
-                <div class="links">
-                    <a href="{{ url('/contato') }}">Contato</a>
-                </div>
+
             </div>
         </div>
     </body>
