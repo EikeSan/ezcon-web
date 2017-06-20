@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Painel;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Painel\Product;
 
 class ProdutoController extends Controller
 {
@@ -12,9 +13,16 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+      private $product;
+      public function __construct(Product $product)
+      {
+        $this->product = $product;
+      }
+
     public function index()
     {
-        return "Index produto";
+        $products = $this->product->all();
+        return view('Painel.products.index',compact('products'));
     }
 
     /**
@@ -81,5 +89,21 @@ class ProdutoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tests()
+    {
+      $insert = $this->product->create([
+        'name' => 'nome do prdouto',
+        'number' => 1231,
+        'active' => false,
+        'category' => 'eletronicos',
+        'description' => 'descricao'
+      ]);
+      if ($insert) {
+        return "Inserido com sucesso ID: {$insert->id}";
+      }else{
+        return "Nao inserido";
+      }
     }
 }
