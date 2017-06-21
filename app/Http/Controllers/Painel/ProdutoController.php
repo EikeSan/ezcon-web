@@ -21,8 +21,9 @@ class ProdutoController extends Controller
 
     public function index()
     {
+        $title = ' - Produtos';
         $products = $this->product->all();
-        return view('Painel.products.index',compact('products'));
+        return view('Painel.products.index',compact('products','title'));
     }
 
     /**
@@ -93,6 +94,7 @@ class ProdutoController extends Controller
 
     public function tests()
     {
+      /*
       $insert = $this->product->create([
         'name' => 'nome do prdouto',
         'number' => 1231,
@@ -105,5 +107,40 @@ class ProdutoController extends Controller
       }else{
         return "Nao inserido";
       }
+      */
+      /*
+      //UPDATE BY ID
+      $update = $this->product->find(5)->update([
+        'name' => 'UpdateTest',
+        'number' => 233232,
+        'active' => true,
+      ]);
+      if($update){
+        return "Update realizado com sucesso ";
+      } else {
+        return "Erro";
+      }*/
+      //UPDATE BY ATRIBUTE
+      /*$update = $this->product->where('number',1231)->update([
+        'name' => 'UpdateByNumber',
+        'number' => 235232,
+        'active' => false,
+      ]);
+      if($update){
+        return "Update realizado com sucesso 2 ";
+      } else {
+        return "Erro";
+      }*/
+      //$delete = $this->product->find(5)->delete();
+      /*$prod = $this->product->find(4);
+      $delete = $prod->delete();
+      */
+      //$this->product->destroy([1,2,3]);
+      //$delete = $this->product->where('number',235232)->delete();
+      /*if ($delete) {
+        return "Deletado com sucesso";
+      }else {
+        return "Erro ao deletear";
+      }*/
     }
 }
