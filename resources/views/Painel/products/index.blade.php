@@ -2,7 +2,7 @@
 
 @section('content')
   <h1 class="title-pg">Listagem dos Produtos</h1>
-  <a class="btn btn-success btn-add" href="#">
+  <a class="btn btn-success btn-add" href="{{route('produtos.create')}}">
     <span class="glyphicon glyphicon-plus"/>
     Cadastrar
   </a>

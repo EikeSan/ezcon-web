@@ -11,6 +11,8 @@
 |
 */
 Route::get('/painel/produtos/teste','Painel\ProdutoController@tests');
+Route::get('/painel/produtos/create','Painel\ProdutoController@create');
+Route::post('/Painel/produtos/store','Painel\ProdutoController@store');
 Route::resource('/painel/produtos','Painel\ProdutoController');
 
 Route::group(['namespace' => 'Site'],function(){
