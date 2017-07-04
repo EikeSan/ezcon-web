@@ -46,7 +46,23 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        return "Produto cadastrado";
+        //dd($request->all());
+        //dd($request->only(['name','number']));
+        //dd($request->except(['_token']));
+        //dd($request->input('name'));
+        $this->validate($request,$this->product->rules,$this->product->messages);
+
+        $dataForm = $request->all();
+
+        $dataForm['active'] = (!isset($dataForm['active'])) ? 0 : 1;
+
+        $insert = $this->product->create($dataForm);
+        if($insert){
+          return redirect()->route('produtos.index');
+        }else{
+          return redirect()->route('produtos.create');
+        }
+
     }
 
     /**

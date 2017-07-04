@@ -1,11 +1,6 @@
-<IfModule mod_rewrite.c>
-
-RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
-RewriteRule ^(.*)$ - [E=BASE:%1]
+Options +FollowSymLinks
+RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ %{ENV:BASE}/index.php [L]
-
-
-</IfModule>
+RewriteRule ^ index.php [L]
