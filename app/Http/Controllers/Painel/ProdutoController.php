@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Painel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Painel\Product;
+use App\Http\Requests\Painel\ProductFormRequest;
 
 class ProdutoController extends Controller
 {
@@ -44,13 +45,13 @@ class ProdutoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductFormRequest $request)
     {
         //dd($request->all());
         //dd($request->only(['name','number']));
         //dd($request->except(['_token']));
         //dd($request->input('name'));
-        $this->validate($request,$this->product->rules,$this->product->messages);
+        //$this->validate($request,$this->product->rules,$this->product->messages);
 
         $dataForm = $request->all();
 

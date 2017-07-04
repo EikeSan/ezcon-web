@@ -20,7 +20,7 @@
       <select class="form-control" name="category" required>
         <option value="">Categoria</option>
         @foreach ($categories as $category)
-          <option value="{{$category}}">{{$category}}</option>
+          <option value="{{$category}}" {{ (old('category') == $category ? "selected":"")}}>{{$category}}</option>
         @endforeach
       </select>
     </div>
