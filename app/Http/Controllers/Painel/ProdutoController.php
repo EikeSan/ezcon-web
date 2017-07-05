@@ -36,7 +36,7 @@ class ProdutoController extends Controller
     {
         $title = ' - Cadastro';
         $categories = ['eletronicos','banho','limpeza','moveis'];
-        return view('Painel.products.create',compact('title','categories'));
+        return view('Painel.products.create-edit',compact('title','categories'));
     }
 
     /**
@@ -85,7 +85,11 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product=$this->product->find($id);
+        $title = " - Editar : $product->name";
+        $categories = ['eletronicos','banho','limpeza','moveis'];
+        return view('Painel.products.create-edit',compact('title','categories','product'));
+
     }
 
     /**
@@ -95,9 +99,18 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductFormRequest $request, $id)
     {
-        //
+
+        $dataForm = $request->all();
+        $product=$this->product->find($id);
+
+        $update = $product->update($dataForm);
+        if ($update) {
+          return redirect()->route('produtos.index');
+        }else {
+          return redirect()->route('produtos.edit',$id)->with(['erros' => 'Falha ao editar']);
+        }
     }
 
     /**

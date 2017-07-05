@@ -21,6 +21,10 @@
   text-decoration: none;
   color: #fff;
 }
+.actions:visited{
+  text-decoration: none;
+  color: #fff;
+}
 .btn-add{
   margin-bottom: 10px;
 }
