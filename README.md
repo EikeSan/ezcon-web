@@ -1,2 +1,2 @@
-# ezcon-web
+# EzCon-Web
 Sistema para condomínio Web 
