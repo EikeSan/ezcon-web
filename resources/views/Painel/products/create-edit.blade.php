@@ -17,7 +17,7 @@
 
     {!! csrf_field() !!}
     <div class="form-group">
-        <input class="form-control" type="text" name="name" placeholder="Nome" value="{{$product->name or old('name')}}" required>
+        {!! Form::text('name',null,['class'=>'form-control','placeholder'=>'nome'])!!}
     </div>
     <div class="form-group">
         <input class="form-control" type="number" name="number" placeholder="Número" value="{{$product->number or old('number')}}" required>
