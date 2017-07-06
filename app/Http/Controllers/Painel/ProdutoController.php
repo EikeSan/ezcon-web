@@ -74,7 +74,10 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->product->find($id);
+        $title = " - Visualizar";
+        return view('Painel.products.show',compact('product','title'));;
+        //return "$product->category";
     }
 
     /**
@@ -109,7 +112,7 @@ class ProdutoController extends Controller
         if ($update) {
           return redirect()->route('produtos.index');
         }else {
-          return redirect()->route('produtos.edit',$id)->with(['erros' => 'Falha ao editar']);
+          return redirect()->route('produtos.edit',$id)->withErrors('Falha ao Editar');
         }
     }
 
@@ -121,7 +124,14 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = $this->product->find($id);
+        $delete = $product->delete();
+        if ($delete) {
+          return redirect()->route('produtos.index');
+        }else {
+          return redirect()->route('produtos.show',$id)->withErrors('Falha ao Deletar');
+        }
+
     }
 
     public function tests()

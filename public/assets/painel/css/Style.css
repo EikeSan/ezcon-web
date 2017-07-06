@@ -10,6 +10,9 @@
 .delete{
   background: #FF0000;
 }
+.view{
+  background: #00B297;
+}
 .actions{
   padding: 6px;
   color: #fff;

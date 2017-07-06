@@ -1,10 +1,15 @@
 @extends('Painel.templates.template')
 @section('content')
-  <h1 class="title-pg">Gestão de Produtos</h1>
+  <h1 class="title-pg">
+    <a href="{{route('produtos.index')}}">
+      <span class="glyphicon glyphicon-fast-backward"></span>
+    </a>
+    Gestão de Produto: <b>{{$product->name or 'Novo'}}</b>
+  </h1>
   @if (isset($errors) && count($errors) > 0)
     <div class="alert alert-danger">
       @foreach ($errors->all() as $error)
-        <p>{{ $error }}</p>
+        <p>{{$error}}</p>
       @endforeach
     </div>
   @endif
@@ -17,7 +22,7 @@
 
     {!! csrf_field() !!}
     <div class="form-group">
-        {!! Form::text('name',null,['class'=>'form-control','placeholder'=>'nome'])!!}
+        <input class="form-control" type="text" name="name" placeholder="nome" value="{{$product->name or old('name')}}"required>
     </div>
     <div class="form-group">
         <input class="form-control" type="number" name="number" placeholder="Número" value="{{$product->number or old('number')}}" required>
@@ -40,7 +45,7 @@
       </label>
     </div>
     <div class="form-group">
-      <textarea class="form-control" name="description" placeholder="Descrição" maxlength="1000">{{$product->description or old('description')}}</textarea>
+      <textarea class="form-control" name="description" placeholder="Descrição" maxlength="1000" minlenght="3" cols="50" rows="10">{{$product->description or old('description')}}</textarea>
     </div>
     <button class="btn btn-success" type="submit">Cadstrar</button>
   </form>
