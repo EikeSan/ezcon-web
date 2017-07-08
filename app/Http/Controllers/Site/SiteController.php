@@ -4,22 +4,104 @@ namespace App\Http\Controllers\Site;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Site\User;
 
 class SiteController extends Controller
 {
-    public function index(){
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+     private $user;
+     public function __construct(User $user)
+     {
+       $this->user = $user;
+     }
+
+    public function index()
+    {
       $title = " - Home";
-      $var1 = 123;
-      $arrayData = [1,2,3,4,5,6,7,8,9];
-      return view('Site.home.index', compact('title', 'var1','arrayData'));
+      return view('Site.home.index', compact('title'));
     }
-    public function contato(){
-      return view('Site.contato.index');
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
-    public function categoria($id=null){
-      return view('welcome');
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
     }
-    public function categoriaOp($id=1){
-      return "Pagina com {$id}";
+
+    public function login(Request $request)
+    {
+      $dados = $request->all();
+
+      $isEmailValido = $this->user->where('email', $dados['email']);
+      if ($isEmailValido) {
+          return view('Site.home.login',compact('dados'));
+      }else {
+        return "Erro";
+      }
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

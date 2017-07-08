@@ -1,41 +1,28 @@
-@extends('Site.templates.template1')
-
+@extends('Site.templates.template')
 @section('content')
-  <h1> Home Page do site!</h1>
-  @if($var1 == '1223')
-    <p> É igual </p>
-  @else
-    <p> É diferente </p>
-  @endif
+  <div class="container">
+  <div class="row" id="pwd-container">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <section class="login-form">
+        <form method="post" action="{{route('login')}}" role="login">
+          {!! csrf_field() !!}
+          <img src="" class="img-responsive" alt="ezcon logo" />
+          <input type="email" name="email" placeholder="email@email.com" required class="form-control input-lg" value="" />
+          <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Senha" required value="" />
+          <div class="pwstrength_viewport_progress"></div>
+          <button type="submit" name="login" class="btn btn-lg btn-primary btn-block">Entrar</button>
+          <div>
+            <a href="#">Resetar senha</a>
+          </div>
+        </form>
+        <div class="form-links">
+          <a href="{{url('http://ezcon.com')}}">www.ezcon.com</a>
+        </div>
+      </section>
+      </div>
+      <div class="col-md-4"></div>
+  </div>
+</div>
 
-  @unless($var1 == '1231')
-    <p> Não é igual unless </p>
-  @endunless
-
-  @for($i = 0; $i < 10; $i++)
-    <p> For:{{$i}} </p>
-  @endfor
-
-{{--
-  @if( count($arrayData) > 0)
-
-    @foreach($arrayData as $array)
-      <p> ForEach:{{$array}} </p>
-    @endforeach
-
-  @else
-    <p> Não há itens </p>
-  @endif
---}}
-
-  @forelse($arrayData as $array)
-    <p> ForElse:{{$array}} </p>
-  @empty
-    <p> ForElse: sem elemenotos
-  @endforelse
-@include('Site.includes.sidebar',compact('var1'))
 @endsection
-
-@push('scripts')
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-@endpush
