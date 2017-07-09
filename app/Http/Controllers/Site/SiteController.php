@@ -51,9 +51,9 @@ class SiteController extends Controller
     {
       $dados = $request->all();
 
-      $isEmailValido = $this->user->where('email', $dados['email']);
+
       if ($isEmailValido) {
-          return view('Site.home.login',compact('dados'));
+        return view('Site.home.login',compact('dados'));
       }else {
         return "Erro";
       }
@@ -103,5 +103,16 @@ class SiteController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function loginView()
+    {
+      $title = " - Login";
+      return view('Site.home.login',compact('$title'));
+    }
+    public function contato()
+    {
+      $title = " - Contato";
+      return view('Site.contato.index');
     }
 }

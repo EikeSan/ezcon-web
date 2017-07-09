@@ -18,9 +18,9 @@ Route::resource('/painel/produtos','Painel\ProdutoController');
 Route::group(['namespace' => 'Site'],function(){
   // Route::get('/categoria/{id}','SiteController@categoria');
   // Route::get('/categoria2/{id?}','SiteController@categoriaOp');
-  //
-  // Route::get('/', 'SiteController@index');
-  // Route::get('/login', 'SiteController@login');
+
   Route::post('/login',['as' => 'login', 'uses' => 'SiteController@login']);
+  Route::get('/login',['as' => 'login', 'uses' => 'SiteController@loginView']);
+  Route::get('/contato',[ 'as' => 'contato', 'uses' => 'SiteController@contato']);
   Route::resource('/','SiteController');
 });

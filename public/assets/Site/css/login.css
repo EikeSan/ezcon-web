@@ -31,7 +31,7 @@ http://www.bootstrapzen.com/item/135/simple-login-form-logo/
 	}
 
 body {
-	background: url(http://i.imgur.com/GHr12sH.jpg) no-repeat center center fixed;
+	background: url(https://blog.nextin.com.br/wp-content/uploads/2015/04/IPTU-unidades-e-condom%C3%ADnio.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -54,6 +54,7 @@ form[role=login] {
 		display: block;
 		margin: 0 auto;
 		margin-bottom: 35px;
+    height: 15em;
 	}
 	form[role=login] input,
 	form[role=login] button {
@@ -69,6 +70,6 @@ form[role=login] {
 	margin-top: 1em;
 	margin-bottom: 50px;
 }
-	.form-links a {
-		color: #fff;
-	}
+.form-links a {
+	color: #fff;
+}

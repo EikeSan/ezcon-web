@@ -1,28 +1,33 @@
 @extends('Site.templates.template')
 @section('content')
-  <div class="container">
-  <div class="row" id="pwd-container">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <section class="login-form">
-        <form method="post" action="{{route('login')}}" role="login">
-          {!! csrf_field() !!}
-          <img src="" class="img-responsive" alt="ezcon logo" />
-          <input type="email" name="email" placeholder="email@email.com" required class="form-control input-lg" value="" />
-          <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Senha" required value="" />
-          <div class="pwstrength_viewport_progress"></div>
-          <button type="submit" name="login" class="btn btn-lg btn-primary btn-block">Entrar</button>
-          <div>
-            <a href="#">Resetar senha</a>
-          </div>
-        </form>
-        <div class="form-links">
-          <a href="{{url('http://ezcon.com')}}">www.ezcon.com</a>
+  @include('Site.includes.navbar')
+  <div class="cover">
+    <div class="navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
         </div>
-      </section>
       </div>
-      <div class="col-md-4"></div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-11 text-center">
+          <img width="250px" height="250px" src="{{url('assets/Site/img/ezconLogo.png')}}" align="left-botton">
+          <p class="text-inverse">
+            <br>
+            <br>
+            <br>
+            <b style="color: black">Seu condomínio a um clique de você.</b>
+          </p>
+          <a href="{{route('login')}}" class="btn btn-lg btn-primary">Login</a>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
 @endsection
