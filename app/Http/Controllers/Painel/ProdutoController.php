@@ -133,6 +133,15 @@ class ProdutoController extends Controller
         }
 
     }
+    public function foneView()
+    {
+      return view('Painel.products.fone');
+    }
+    public function fone(Request $request)
+    {
+      // $fone = $request->all();
+      return "$request->phone";
+    }
 
     public function tests()
     {

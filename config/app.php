@@ -179,7 +179,7 @@ return [
         /*
         *Pacote para formularios
         */
-        //Collective\Html\HtmlServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -233,8 +233,8 @@ return [
         /*
         *Form and HTML
         */
-        //'Form' => Collective\Html\FormFacade::class,
-        //'Html' => Collective\Html\HtmlFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

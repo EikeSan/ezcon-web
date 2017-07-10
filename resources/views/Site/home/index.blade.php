@@ -6,13 +6,19 @@
       <div class="container">
         <div class="row">
           <div class="col-md-11 text-center">
+
             <img width="30%" height="30%" src="{{url('assets/Site/img/ezconLogo.png')}}">
+
             <p class="text-inverse">
               <br>
               <br>
               <b style="color: black">Seu condomínio a um clique de você.</b>
             </p>
-            <a href="{{route('login')}}" class="btn btn-lg btn-primary">Login</a>
+
+            @if (Auth::guest())
+                <a href="{{route('login')}}" class="btn btn-lg btn-primary">Login</a>
+            @endif
+
           </div>
         </div>
       </div>
