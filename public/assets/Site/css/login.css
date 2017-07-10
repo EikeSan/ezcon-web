@@ -31,7 +31,8 @@ http://www.bootstrapzen.com/item/135/simple-login-form-logo/
 	}
 
 body {
-	background: url(https://blog.nextin.com.br/wp-content/uploads/2015/04/IPTU-unidades-e-condom%C3%ADnio.png) no-repeat center center fixed;
+	//background: url(https://blog.nextin.com.br/wp-content/uploads/2015/04/IPTU-unidades-e-condom%C3%ADnio.png) no-repeat center center fixed;
+  background: url('/assets/Site/img/bg.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
