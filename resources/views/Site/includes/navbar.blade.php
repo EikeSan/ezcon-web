@@ -39,6 +39,12 @@
                     </li>
                   @endif
 
+                  @if (Auth::user() && (Auth::user()->type == 'admin' or Auth::user()->type == 'sindico') )
+                    <li>
+                      <a href="{{route('home.index')}}">Morador</a>
+                    </li>
+                  @endif
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->

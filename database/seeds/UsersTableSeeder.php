@@ -19,5 +19,12 @@ class UsersTableSeeder extends Seeder
         'type' => 'admin',
         'phone' => '82999302626'
       ]);
+      User::create([
+        'name'=> 'Teste',
+        'email' => 'teste@teste.com',
+        'password' => bcrypt('123456'),
+        'type' => 'morador',
+        'phone' => '82999302626'
+      ]);
     }
 }

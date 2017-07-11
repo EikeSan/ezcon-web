@@ -24,9 +24,13 @@ Route::group(['namespace' => 'Site'],function(){
   Route::resource('/','SiteController');
 });
 
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/home', 'Admin\AdminController');
+Route::post('/cadastrar','Admin\AdminController@cadastrarUser')->name('cadastrar');
+Route::post('/cadastrar2','Admin\AdminController@vinculaMorador')->name('cadastrar2');
 
 Route::resource('/morador','Morador\MoradorController');
 

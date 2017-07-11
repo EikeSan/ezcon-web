@@ -1,34 +1,41 @@
 <?php
 
-namespace App\Http\Controllers\Morador;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Morador\Morador;
+use App\Models\Apartamento\Apartamento;
 use App\User;
+use App\Http\Requests\MoradorFormRequest;
 
-class MoradorController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
      private $morador;
      private $user;
+     private $apartamento;
 
-     public function __construct()
+     public function __construct(Morador $morador, User $user, Apartamento $apartamento)
      {
          $this->middleware('auth');
+         $this->user = $user;
+         $this->morador = $morador;
+         $this->apartamento = $apartamento;
      }
-
 
     public function index()
     {
-        $title = ' - Moradores';
+        $title = ' - Admin';
         $moradores = $this->morador->all();
         $users = $this->user->all();
-        return view('Morador.index',compact('title','moradores','users'));
+        $apartamentos = $this->apartamento->all();
+        return view('admin.index',compact('title','moradores','users','apartamentos'));
     }
 
     /**
@@ -38,9 +45,7 @@ class MoradorController extends Controller
      */
     public function create()
     {
-        $title = ' - Cadastro Morador';
-        $types = ['admin','morador','sindico','funcionario'];
-        return view('admin.register',compact('title','types'));
+        //
     }
 
     /**
@@ -97,5 +102,25 @@ class MoradorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cadastrarUser(MoradorFormRequest $request)
+    {
+      $dataForm = $request->all();
+      $insert = $this->user->create($dataForm);
+
+      if ($insert) {
+        $user = $this->user->where('email', $request->email);
+        $id = $user->id;
+        $apartamentos = $this->apartamento->all();
+        return view('admin.register2',compact('apartamentos'));
+      }else {
+        return view('admin.register');
+      }
+    }
+
+    public function vinculaMorador()
+    {
+      # code...
     }
 }
