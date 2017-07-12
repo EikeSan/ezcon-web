@@ -39,7 +39,7 @@
                     </li>
                   @endif
 
-                  @if (Auth::user() && (Auth::user()->type == 'admin' or Auth::user()->type == 'sindico') )
+                  @if (Auth::user() && (Auth::user()->type == 'admin' or Auth::user()->sindico == '1') )
                     <li>
                       <a href="{{route('home.index')}}">Morador</a>
                     </li>

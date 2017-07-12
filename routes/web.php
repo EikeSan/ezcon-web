@@ -32,7 +32,11 @@ Route::resource('/home', 'Admin\AdminController');
 Route::post('/cadastrar','Admin\AdminController@cadastrarUser')->name('cadastrar');
 Route::post('/cadastrar2','Admin\AdminController@vinculaMorador')->name('cadastrar2');
 
+Route::post('/morador/store2','Morador\MoradorController@store2')->name('morador.store2');
+Route::get('/morador/edit2/{id}','Morador\MoradorController@edit2')->name('morador.edit2');
+Route::put('/morador/update2/{id}','Morador\MoradorController@update2')->name('morador.update2');
 Route::resource('/morador','Morador\MoradorController');
+
 
 Route::resource('/funcionario','Funcionario\FuncionarioController');
 

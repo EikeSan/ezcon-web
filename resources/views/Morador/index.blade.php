@@ -1,5 +1,6 @@
 @extends('Site.templates.template')
 @section('content')
+  @include('Site.includes.navbar')
   {{-- <ul class="nav navbar-nav navbar-right">
       <!-- Authentication Links -->
       @if (Auth::guest())

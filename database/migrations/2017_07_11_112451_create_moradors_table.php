@@ -18,8 +18,8 @@ class CreateMoradorsTable extends Migration
           $table->integer('id_users')->unsigned();
           $table->integer('id_apartamentos')->unsigned();
           $table->timestamps();
-          $table->foreign('id_users')->references('id')->on('users');
-          $table->foreign('id_apartamentos')->references('id')->on('apartamentos');
+          $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+          $table->foreign('id_apartamentos')->references('id')->on('apartamentos')->onDelete('cascade');
       });
     }
 

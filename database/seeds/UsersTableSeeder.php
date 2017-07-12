@@ -17,14 +17,8 @@ class UsersTableSeeder extends Seeder
         'email' => 'eikesantz@hotmail.com',
         'password' => bcrypt('eike123'),
         'type' => 'admin',
-        'phone' => '82999302626'
-      ]);
-      User::create([
-        'name'=> 'Teste',
-        'email' => 'teste@teste.com',
-        'password' => bcrypt('123456'),
-        'type' => 'morador',
-        'phone' => '82999302626'
+        'phone' => '82999302626',
+        'sindico' => '0',
       ]);
     }
 }

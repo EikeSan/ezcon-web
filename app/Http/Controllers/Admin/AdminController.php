@@ -104,23 +104,4 @@ class AdminController extends Controller
         //
     }
 
-    public function cadastrarUser(MoradorFormRequest $request)
-    {
-      $dataForm = $request->all();
-      $insert = $this->user->create($dataForm);
-
-      if ($insert) {
-        $user = $this->user->where('email', $request->email);
-        $id = $user->id;
-        $apartamentos = $this->apartamento->all();
-        return view('admin.register2',compact('apartamentos'));
-      }else {
-        return view('admin.register');
-      }
-    }
-
-    public function vinculaMorador()
-    {
-      # code...
-    }
 }

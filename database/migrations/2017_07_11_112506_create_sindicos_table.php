@@ -19,7 +19,7 @@ class CreateSindicosTable extends Migration
           $table->date('data_posse');
           $table->date('data_saida')->nullable();
           $table->timestamps();
-          $table->foreign('id_moradors')->references('id')->on('moradors');
+          $table->foreign('id_moradors')->references('id')->on('moradors')->onDelete('cascade');
       });
     }
 

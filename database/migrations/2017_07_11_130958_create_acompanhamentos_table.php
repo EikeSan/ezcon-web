@@ -18,7 +18,7 @@ class CreateAcompanhamentosTable extends Migration
           $table->integer('id_ordem_servicos')->unsigned();
           $table->string('acompanhamento')->nullable();
           $table->timestamps();
-          $table->foreign('id_ordem_servicos')->references('id')->on('ordem_servicos');
+          $table->foreign('id_ordem_servicos')->references('id')->on('ordem_servicos')->onDelete('cascade');
       });
     }
 

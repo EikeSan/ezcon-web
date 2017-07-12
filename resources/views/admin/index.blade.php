@@ -24,10 +24,10 @@
               <td>{{$user->name}}</td>
               <td>{{$apartamento->numeroAp}}</td>
               <td>
-                <a class="actions edit" href="{{route('morador.edit',$morador->id)}}">
+                <a class="actions edit" href="{{route('morador.edit',$user->id)}}">
                   <span class="glyphicon glyphicon-pencil"/>
                 </a>
-                <a class="actions view" href="{{route('morador.show',$morador->id)}}">
+                <a class="actions view" href="{{route('morador.show',$user->id)}}">
                   <span class="glyphicon glyphicon-eye-open"/>
                 </a>
               </td>

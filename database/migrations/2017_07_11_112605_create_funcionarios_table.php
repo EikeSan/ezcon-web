@@ -20,7 +20,7 @@ class CreateFuncionariosTable extends Migration
           $table->date('data_admissao');
           $table->date('data_demissao')->nullable();
           $table->timestamps();
-          $table->foreign('id_users')->references('id')->on('users');
+          $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
       });
     }
 

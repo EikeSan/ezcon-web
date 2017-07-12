@@ -23,9 +23,9 @@ class CreateOrdemServicosTable extends Migration
           $table->string('solucao');
           $table->float('custo');
           $table->timestamps();
-          $table->foreign('id_moradors')->references('id')->on('moradors');
-          $table->foreign('id_apartamentos')->references('id')->on('apartamentos');
-          $table->foreign('id_funcionarios')->references('id')->on('funcionarios');
+          $table->foreign('id_moradors')->references('id')->on('moradors')->onDelete('cascade');
+          $table->foreign('id_apartamentos')->references('id')->on('apartamentos')->onDelete('cascade');
+          $table->foreign('id_funcionarios')->references('id')->on('funcionarios')->onDelete('cascade');
       });
     }
 
