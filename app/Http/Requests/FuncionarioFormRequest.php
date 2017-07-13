@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MoradorFormRequest extends FormRequest
+class FuncionarioFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class MoradorFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'id_apartamentos' => 'required',
+            'funcao' => 'required|max:20',
+            'data_admissao' => 'required|date',
         ];
     }
 }

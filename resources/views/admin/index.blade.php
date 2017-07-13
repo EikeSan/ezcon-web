@@ -2,6 +2,7 @@
 
 @section('content')
   @include('Site.includes.navbar')
+<div class="container">
   <h1 class="title-pg">Lista dos Moradores</h1>
   <a class="btn btn-success btn-add" href="{{route('morador.create')}}">
     <span class="glyphicon glyphicon-plus"/>
@@ -11,7 +12,7 @@
     <tr>
       <th>Nome</th>
       <th>Apartamento</th>
-      <th width="100px">Acçoes</th>
+      <th width="100px">Ações</th>
     </tr>
     @if ($moradores)
 
@@ -36,4 +37,6 @@
         @endforeach
       @endforeach
     @endforeach
-@endsection
+
+</div>
+  @endsection

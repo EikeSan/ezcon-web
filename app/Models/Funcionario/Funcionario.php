@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Funcionario extends Model
 {
-  protected $fillable = [];
+  protected $fillable = [
+    'funcao','data_admissao','data_demissao'
+  ];
 
   protected $guarded =[];
 }

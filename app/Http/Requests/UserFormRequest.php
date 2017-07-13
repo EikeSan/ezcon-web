@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MoradorFormRequest extends FormRequest
+class UserFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,11 @@ class MoradorFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'id_apartamentos' => 'required',
+          'name' => 'required|string|max:255',
+          'email' => 'required|string|email|max:255|unique:users',
+          'password' => 'required|string|min:6|confirmed',
+          'type' => 'required',
+          'phone' => 'required|min:10|max:11',
         ];
     }
 }

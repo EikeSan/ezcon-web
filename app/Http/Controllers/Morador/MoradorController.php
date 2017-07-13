@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Morador;
 
 //Imports de Requests
 use App\Http\Requests\MoradorFormRequest;
+use App\Http\Requests\UserFormRequest;
 use Illuminate\Http\Request;
 
 //Imports do Controller
@@ -61,7 +62,7 @@ class MoradorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MoradorFormRequest $request)
+    public function store(UserFormRequest $request)
     {
       $dataForm = $request->all();
       $dataForm['sindico'] = (!isset($dataForm['sindico'])) ? 0 : 1;
@@ -84,7 +85,7 @@ class MoradorController extends Controller
       }
     }
 
-    public function store2(Request $request)
+    public function store2(MoradorFormRequest $request)
     {
       $dataForm = $request->all();
       $insert = $this->morador->create($dataForm);
@@ -103,7 +104,13 @@ class MoradorController extends Controller
      */
     public function show($id)
     {
-        //
+      $user = $this->user->find($id);
+      $moradores = $this->morador->where('id_users', $id)->get()->all();
+      foreach ($moradores as $morador) {
+        $apartamento = $this->apartamento->find($morador->id_apartamentos);
+      }
+      $title = " - Visualizar";
+      return view('Morador.show',compact('user','title','apartamento'));;
     }
 
     /**
@@ -173,6 +180,12 @@ class MoradorController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $user = $this->user->find($id);
+      $delete = $user->delete();
+      if ($delete) {
+        return redirect()->route('home.index');
+      }else {
+        return redirect()->route('morador.show',$id)->withErrors('Falha ao Deletar');
+      }
     }
 }

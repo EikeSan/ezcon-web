@@ -2,8 +2,17 @@
 
 namespace App\Http\Controllers\Funcionario;
 
+//Imports de Requests
 use Illuminate\Http\Request;
+use App\Http\Requests\UserFormRequest;
+use App\Http\Requests\FuncionarioFormRequest;
+
+//Import Modelo do Controller
 use App\Http\Controllers\Controller;
+
+//Imports dos Models
+use App\User;
+use App\Models\Funcionario\Funcionario;
 
 class FuncionarioController extends Controller
 {
@@ -12,9 +21,13 @@ class FuncionarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     private $funcionario;
+     private $user;
 
-     public function __construct()
+     public function __construct(User $user, Funcionario $funcionario)
      {
+         $this->funcionario = $funcionario;
+         $this->user = $user;
          $this->middleware('auth');
      }
 
@@ -23,6 +36,13 @@ class FuncionarioController extends Controller
         return view('Funcionario.index');
     }
 
+    public function lista()
+    {
+      $funcionarios = $this->funcionario->all();
+      $users = $this->user->all();
+      $title = " - Lista de Funcionários";
+      return view('Funcionario.lista',compact('funcionarios','users','title'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +50,8 @@ class FuncionarioController extends Controller
      */
     public function create()
     {
-        //
+        $title = " - Cadastro Funcionário";
+        return view('Funcionario.create-edit',compact('title'));
     }
 
     /**
@@ -39,11 +60,38 @@ class FuncionarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-        //
+      $dataForm = $request->all();
+      $dataForm['sindico'] = (!isset($dataForm['sindico'])) ? 0 : 1;
+
+      $insert = $this->user->create([
+        'name' => $dataForm['name'],
+        'email' => $dataForm['email'],
+        'password' => bcrypt($dataForm['password']),
+        'type' => $dataForm['type'],
+        'sindico' => $dataForm['sindico'],
+        'phone' => $dataForm['phone'],
+      ]);
+
+      if ($insert) {
+        return view('Funcionario.create-edit-2',compact('insert'));
+      }else {
+        return view('Funcionario.create-edit');
+      }
     }
 
+
+    public function store2(FuncionarioFormRequest $request)
+    {
+      $dataForm = $request->all();
+      $insert = $this->funcionario->create($dataForm);
+      if ($insert) {
+        return redirect()->route('funcionario.lista');
+      }else {
+        return view('Funcionario.create-edit-2');
+      }
+    }
     /**
      * Display the specified resource.
      *
