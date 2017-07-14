@@ -25,7 +25,7 @@ class FuncionarioFormRequest extends FormRequest
     {
         return [
             'funcao' => 'required|max:20',
-            'data_admissao' => 'required|date',
+            'data_admissao' => 'required|date|date_format:d-m-Y',
         ];
     }
 }

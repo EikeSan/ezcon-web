@@ -59,7 +59,7 @@
                             <label for="Data Admissão" class="col-md-4 control-label">Data Admissão</label>
 
                             <div class="col-md-6">
-                              <input type="date" class="form-control" name="data_admissao" placeholder="dd-mm-yyyy" value="{{$funcionario->funcao or old('funcao')}}" required>
+                              <input type="date" class="form-control" name="data_admissao" placeholder="dd-mm-yyyy" value="{{$funcionario->data_admissao or old('data_admissao')}}" pattern="\d{2}-\d{2}-\d{4}" required>
                             </div>
                         </div>
 

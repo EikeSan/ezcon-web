@@ -85,6 +85,8 @@ class FuncionarioController extends Controller
     public function store2(FuncionarioFormRequest $request)
     {
       $dataForm = $request->all();
+      $dataForm['data_admissao'] = date('Y-m-d',strtotime($dataForm['data_admissao']));
+
       $insert = $this->funcionario->create($dataForm);
       if ($insert) {
         return redirect()->route('funcionario.lista');
