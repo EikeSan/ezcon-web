@@ -102,7 +102,12 @@ class FuncionarioController extends Controller
      */
     public function show($id)
     {
-        //
+      $title = " - Visualizar";
+
+      $user = $this->user->find($id);
+      $funcionarios = $this->funcionario->where('id_users', $id)->get()->all();
+
+      return view('Funcionario.show',compact('user','title','funcionarios'));
     }
 
     /**
@@ -113,7 +118,27 @@ class FuncionarioController extends Controller
      */
     public function edit($id)
     {
-        //
+      $user = $this->user->find($id);
+      $title = " - Editar : $user->name";
+      return view('Funcionario.create-edit',compact('title','user'));
+    }
+
+    public function edit2($id)
+    {
+      $user = $this->user->find($id);
+      $funcionarios = $this->funcionario->where('id_users', "$id")->get()->all();
+
+      $title = " - Editar : $user->name";
+      return view('Funcionario.create-edit-2',compact('title','user','funcionarios'));
+    }
+
+    public function fire($id)
+    {
+      $user = $this->user->find($id);
+      $funcionarios = $this->funcionario->where('id_users', "$id")->get()->all();
+
+      $title = " - Editar : $user->name";
+      return view('Funcionario.fire',compact('title','user','funcionarios'));
     }
 
     /**
@@ -125,7 +150,30 @@ class FuncionarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $dataForm = $request->all();
+      $user = $this->user->find($id);
+
+      $update = $user->update($dataForm);
+      if ($update) {
+        return redirect()->route('funcionario.edit2',compact('id'));
+      }else {
+        return redirect()->route('funcionario.edit',$id)->withErrors('Falha ao Editar');
+      }
+    }
+
+    public function update2(Request $request, $id)
+    {
+      $dataForm = $request->all();
+      $funcionario = $this->funcionario->find($id);
+
+      $dataForm['data_admissao'] = date('Y-m-d',strtotime($dataForm['data_admissao']));
+      (isset($dataForm['data_demissao']) ? $dataForm['data_demissao'] = date('Y-m-d',strtotime($dataForm['data_demissao'])): "");
+      $update = $funcionario->update($dataForm);
+      if ($update) {
+        return redirect()->route('funcionario.lista');
+      }else {
+        return redirect()->route('funcionario.edit2',$funcionario->id_users)->withErrors('Falha ao Editar');
+      }
     }
 
     /**
@@ -136,6 +184,12 @@ class FuncionarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $user = $this->user->find($id);
+      $delete = $user->delete();
+      if ($delete) {
+        return redirect()->route('funcionario.lista');
+      }else {
+        return redirect()->route('funcionario.show',$id)->withErrors('Falha ao Deletar');
+      }
     }
 }

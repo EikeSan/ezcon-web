@@ -30,7 +30,7 @@
                   </li>
 
                   <li>
-                    <a href="{{route('contato')}}">Contacts</a>
+                    <a href="{{route('contato')}}">Contato</a>
                   </li>
 
                   @if (Auth::user())
@@ -41,7 +41,13 @@
 
                   @if (Auth::user() && (Auth::user()->type == 'admin' or Auth::user()->sindico == '1') )
                     <li>
-                      <a href="{{route('home.index')}}">Morador</a>
+                      <a href="{{route('home.index')}}">Moradores</a>
+                    </li>
+                  @endif
+
+                  @if (Auth::user() && (Auth::user()->type == 'admin' or Auth::user()->sindico == '1')  )
+                    <li>
+                      <a href="{{route('funcionario.lista')}}">Funcionários</a>
                     </li>
                   @endif
 

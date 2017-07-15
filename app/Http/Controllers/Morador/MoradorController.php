@@ -52,7 +52,7 @@ class MoradorController extends Controller
     public function create()
     {
         $title = ' - Cadastro Morador';
-        $types = ['admin','morador','funcionario'];
+        $types = ['admin','morador'];
         return view('Morador.create-edit',compact('title','types'));
     }
 
@@ -110,7 +110,7 @@ class MoradorController extends Controller
         $apartamento = $this->apartamento->find($morador->id_apartamentos);
       }
       $title = " - Visualizar";
-      return view('Morador.show',compact('user','title','apartamento'));;
+      return view('Morador.show',compact('user','title','apartamento'));
     }
 
     /**

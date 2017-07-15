@@ -51,7 +51,7 @@
                             <label for="Funcao" class="col-md-4 control-label">Função</label>
 
                             <div class="col-md-6">
-                              <input type="text" class="form-control" name="funcao" placeholder="Porteiro" value="{{$funcionario->funcao or old('funcao')}}" required>
+                              <input type="text" class="form-control" name="funcao" placeholder="Porteiro" value="{{$funcionario->funcao or old('funcao')}}" readonly="readonly" required>
                             </div>
                         </div>
 
@@ -59,16 +59,22 @@
                             <label for="Data Admissão" class="col-md-4 control-label">Data Admissão</label>
 
                             <div class="col-md-6">
-                              <input type="date" class="form-control" name="data_admissao" placeholder="dd-mm-yyyy" value="{{ (isset($funcionario) ? date('d-m-Y',strtotime($funcionario->data_admissao)):"") }}" pattern="\d{2}-\d{2}-\d{4}" required>
+                              <input type="date" class="form-control" name="data_admissao" placeholder="dd-mm-yyyy" value="{{ date('d-m-Y',strtotime($funcionario->data_admissao)) }}" readonly="readonly" required>
                             </div>
                         </div>
 
-                        <input type="hidden" name="id_users" value="{{$insert->id or $user->id}}">
+                        <div class="form-group">
+                            <label for="Data Demissão" class="col-md-4 control-label">Data Demissão</label>
 
+                            <div class="col-md-6">
+                              <input type="date" class="form-control" name="data_demissao" placeholder="dd-mm-yyyy" value="{{ date('d-m-Y') }}" pattern="\d{2}-\d{2}-\d{4}" required>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id_users" value="{{$insert->id or $user->id}}">
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Cadastrar
+                                <button type="submit" class="btn btn-danger">
+                                    Demitir
                                 </button>
                             </div>
                         </div>

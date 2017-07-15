@@ -25,12 +25,12 @@
     </div>
   </div>
   <style type="text/css">
-    body{
+    /*body{
       background: url(https://blog.nextin.com.br/wp-content/uploads/2015/04/IPTU-unidades-e-condom%C3%ADnio.png) no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
-    }
+    }*/
   </style>
 @endsection

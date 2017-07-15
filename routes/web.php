@@ -49,6 +49,7 @@ Route::get('funcionario/lista','Funcionario\FuncionarioController@lista')->name(
 Route::post('/funcionario/store2','Funcionario\FuncionarioController@store2')->name('funcionario.store2');
 Route::get('/funcionario/edit2/{id}','Funcionario\FuncionarioController@edit2')->name('funcionario.edit2');
 Route::put('/funcionario/update2/{id}','Funcionario\FuncionarioController@update2')->name('funcionario.update2');
+Route::get('/funcionario/fire/{id}','Funcionario\FuncionarioController@fire')->name('funcionario.fire');
 Route::resource('/funcionario','Funcionario\FuncionarioController');
 
 //Rotas para Sindico
