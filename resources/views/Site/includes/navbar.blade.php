@@ -35,7 +35,7 @@
 
                   @if (Auth::user())
                     <li>
-                      <a href="#">Ordem de Serviço</a>
+                      <a href="{{route('os.index')}}">Ordem de Serviço</a>
                     </li>
                   @endif
 

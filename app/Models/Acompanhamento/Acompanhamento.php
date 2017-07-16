@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Acompanhamento extends Model
 {
-  protected $fillable = [];
+  protected $fillable = [
+    'id_ordem_servicos','acompanhamento'
+  ];
 
   protected $guarded =[];
 }
