@@ -20,8 +20,8 @@ class CreateOrdemServicosTable extends Migration
           $table->integer('id_funcionarios')->unsigned()->nullable();
           $table->string('descricao');
           $table->enum('status',['novo','atribuido','pendente','solucionado']);
-          $table->string('solucao');
-          $table->float('custo');
+          $table->string('solucao')->nullable();
+          $table->float('custo')->nullable();
           $table->timestamps();
           $table->foreign('id_moradors')->references('id')->on('moradors')->onDelete('cascade');
           $table->foreign('id_apartamentos')->references('id')->on('apartamentos')->onDelete('cascade');

@@ -164,6 +164,8 @@ class MoradorController extends Controller
       $dataForm = $request->all();
       $morador = $this->morador->find($id);
 
+      $dataForm['sindico'] = (!isset($dataForm['sindico'])) ? 0 : 1;
+
       $update = $morador->update($dataForm);
       if ($update) {
         return redirect()->route('home.index');
