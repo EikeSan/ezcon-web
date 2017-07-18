@@ -5,7 +5,7 @@
     <h1 class="title-pg">Minhas Ordens de Serviço</h1>
 
     {{-- @if (Auth::user() && Auth::user()->type == 'admin') --}}
-      <a class="btn btn-success btn-add" href="{{route('funcionario.create')}}">
+      <a class="btn btn-success btn-add" href="{{route('os.criar',Auth::user()->id)}}">
         <span class="glyphicon glyphicon-plus"/>
         Nova Solicitação
       </a>
@@ -55,10 +55,10 @@
 
                 {{-- @if (Auth::user() && Auth::user()->type == 'admin') --}}
                     <td>
-                      <a class="actions edit" href="{{route('funcionario.edit',$ordemServico->id)}}">
+                      <a class="actions edit" href="{{route('os.edit',$ordemServico->id)}}">
                         <span class="glyphicon glyphicon-pencil"/>
                       </a>
-                      <a class="actions view" href="{{route('funcionario.show',$ordemServico->id)}}">
+                      <a class="actions view" href="{{route('os.show',$ordemServico->id)}}">
                         <span class="glyphicon glyphicon-eye-open"/>
                       </a>
                       <a href="{{route('acompanhamento.index')}}">

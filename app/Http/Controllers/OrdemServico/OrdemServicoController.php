@@ -4,8 +4,7 @@ namespace App\Http\Controllers\OrdemServico;
 
 //Imports de Requests
 use Illuminate\Http\Request;
-use App\Http\Requests\UserFormRequest;
-use App\Http\Requests\FuncionarioFormRequest;
+use App\Http\Requests\OrdemServicoFormRequest;
 
 //Import Modelo do Controller
 use App\Http\Controllers\Controller;
@@ -72,9 +71,9 @@ class OrdemServicoController extends Controller
          }
          return view('OrdemDeServico.funcionario-lista',compact('title','apartamentos','users','moradores','funcionario','ordemServicos'));
 
-       }else if ($user->type == 'morador' && $user->sindico == 1) {
+       }else if ($user->type == 'morador' && $user->sindico == 1 or $user->type == 'admin') {
 
-         $ordemServicos = $this->ordemServico->all();
+         $ordemServicos = $this->ordemServico->all()->sortBy('created_at');
          $funcionarios = $this->funcionario->all();
 
          return view('OrdemDeServico.sindico-lista',compact('ordemServicos','title','users','apartamentos','moradores','funcionarios'));
@@ -97,9 +96,21 @@ class OrdemServicoController extends Controller
 
      }
 
+    public function newCreate($id)
+    {
+        $morador = $this->morador->where('id_users', $id)->first();
+        $users = $this->user->all();
+        $apartamentos = $this->apartamento->all();
+        $funcionarios = $this->funcionario->all();
+        $title = " - Nova OS";
+        $status = ['novo','atribuido'];
+        return view('OrdemDeServico.create-edit',compact('title','status','morador','funcionarios','users','apartamentos'));
+    }
+
     public function create()
     {
-        //
+
+
     }
 
     /**
@@ -108,7 +119,7 @@ class OrdemServicoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrdemServicoFormRequest $request)
     {
         //
     }

@@ -58,6 +58,7 @@ Route::resource('/sindico','Sindico\SindicoController');
 
 //Rotas para Ordem de Serviço
 Route::get('/os/lista/{id}','OrdemServico\OrdemServicoController@lista')->name('os.lista');
+Route::get('/os/criar/{id}','OrdemServico\OrdemServicoController@newCreate')->name('os.criar');
 Route::resource('/os','OrdemServico\OrdemServicoController');
 
 Route::resource('/acompanhamento','Acompanhamento\AcompanhamentoController');
