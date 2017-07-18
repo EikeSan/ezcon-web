@@ -92,7 +92,7 @@ class MoradorController extends Controller
       if ($insert) {
         return redirect()->route('home.index');
       }else {
-        return view('Morador.create-edit-2');
+        return view('Morador.create-edit-2')->withErrors("Erro ao criar morador");
       }
     }
 

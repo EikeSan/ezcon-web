@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel">
-                <div class="panel-heading">Cadastrar Funcionario 2/2</div>
+                <div class="panel-heading">Demitir Funcionario</div>
                 <div class="panel-body">
 
                   @if (isset($user))
@@ -59,7 +59,7 @@
                             <label for="Data Admissão" class="col-md-4 control-label">Data Admissão</label>
 
                             <div class="col-md-6">
-                              <input type="date" class="form-control" name="data_admissao" placeholder="dd-mm-yyyy" value="{{ date('d-m-Y',strtotime($funcionario->data_admissao)) }}" readonly="readonly" required>
+                              <input type="date" class="form-control" name="data_admissao" placeholder="dd-mm-yyyy" value="{{ date('Y-m-d',strtotime($funcionario->data_admissao)) }}" readonly="readonly" required>
                             </div>
                         </div>
 
@@ -67,7 +67,7 @@
                             <label for="Data Demissão" class="col-md-4 control-label">Data Demissão</label>
 
                             <div class="col-md-6">
-                              <input type="date" class="form-control" name="data_demissao" placeholder="dd-mm-yyyy" value="{{ date('d-m-Y') }}" pattern="\d{2}-\d{2}-\d{4}" required>
+                              <input type="date" class="form-control" name="data_demissao" placeholder="dd-mm-yyyy" value="{{ date('Y-m-d') }}" pattern="\d{2,4}-\d{2}-\d{2,4}" required>
                             </div>
                         </div>
                         <input type="hidden" name="id_users" value="{{$insert->id or $user->id}}">
