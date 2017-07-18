@@ -121,7 +121,15 @@ class OrdemServicoController extends Controller
      */
     public function store(OrdemServicoFormRequest $request)
     {
-        //
+        $dataForm = $request->all();
+        $insert = $this->ordemServico->create($dataForm);
+        $morador = $this->morador->find($dataForm['id_moradors']);
+
+        if ($insert) {
+          return redirect()->route('os.lista',$morador->id_users);
+        }else{
+          return redirect()->route('os.criar',$mroador->id_users);
+        }
     }
 
     /**

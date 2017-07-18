@@ -53,7 +53,7 @@
                                 <label for="apartamento" class="col-md-4 control-label">Apartamento</label>
                                 @foreach ($apartamentos as $apartamento )
                                   @foreach ($users as $user)
-                                    @if ($user->id == $apartamento->id_users)
+                                    @if ($user->id == $morador->id_users && $apartamento->id == $morador->id_apartamentos)
                                       <div class="col-md-6">
                                           <input  type="text" class="form-control" readonly="readonly" name="apartamento" value="{{ $apartamento->numeroAp }}" required autofocus>
                                           <input type="hidden" name="id_apartamentos" value="{{$apartamento->id}}">

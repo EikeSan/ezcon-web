@@ -39,9 +39,13 @@
                 @foreach ($users as $funcionarioUser )
                   @if ($ordemServico->id_funcionarios == $funcionario->id && $funcionario->id_users == $funcionarioUser->id)
                     <td>{{$funcionarioUser->name}}</td>
+                    @else
                   @endif
                 @endforeach
               @endforeach
+              @if (!$ordemServico->id_funcionarios == $funcionario->id && $funcionario->id_users == $funcionarioUser->id)
+                <td></td>
+              @endif
 
               <td>{{$ordemServico->solucao}}</td>
 
