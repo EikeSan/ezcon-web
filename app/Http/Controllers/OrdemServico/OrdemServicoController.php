@@ -140,7 +140,11 @@ class OrdemServicoController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = " - Visualizar OS";
+        $ordemServico = $this->ordemServico->find($id);
+        $morador = $this->morador->find($ordemServico->id_moradors);
+        $user = $this->user->find($morador->id_users);
+        return view('OrdemDeServico.show',compact('title','ordemServico','user'));
     }
 
     /**
@@ -182,7 +186,7 @@ class OrdemServicoController extends Controller
         if ($update) {
           return redirect()->route('os.lista',$user->id);
         }else {
-          return redirect()->route('os.edit',$id);
+          return redirect()->route('os.edit',$id)->withErrors("Erro ao editar");
         }
 
     }
@@ -193,8 +197,17 @@ class OrdemServicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+      $ordemServico = $this->ordemServico->find($id);
+      $dataForm = $request->all();
+
+      $delete = $ordemServico->delete();
+      if ($delete) {
+        return redirect()->route('os.lista',$dataForm['id_users']);
+      }else {
+        return redirect()->route('os.show',compact('id'))->withErrors('Erro ao deletar');
+      }
     }
+
 }
