@@ -74,3 +74,15 @@ form[role=login] {
 .form-links a {
 	color: #fff;
 }
+
+.table th{
+  text-align: center;
+}
+
+.table tr{
+  text-align: center;
+}
+
+.table td{
+  text-align: center;
+}

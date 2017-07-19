@@ -6,11 +6,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel">
-                <div class="panel-heading">Nova Ordem de Serviço</div>
+                <div class="panel-heading">Ordem de Serviço</div>
                 <div class="panel-body">
 
-                  @if (isset($user))
-                      <form class="form" action="{{route('os.update', $user->id)}}" method="post">
+                  @if (isset($ordemServico))
+                      <form class="form" action="{{route('os.update', $ordemServico->id)}}" method="post">
                         {!! method_field('PUT') !!}
                     @else
                       <form class="form-horizontal" method="POST" action="{{ route('os.store') }}">
@@ -43,7 +43,10 @@
                                 <select class="form-control" name="id_apartamentos">
                                   <option value="">Número Apartamento</option>
                                   @foreach ($apartamentos as $apartamento )
-                                    <option value="{{$apartamento->id}}">{{$apartamento->numeroAp}}</option>
+                                    <option value="{{$apartamento->id}}"
+                                      {{(isset($ordemServico) ? ($ordemServico->id_apartamentos == $apartamento->id ? "selected":""):(old('id_apartamentos') == $apartamento->id ? "selected":""))}} >
+                                      {{$apartamento->numeroAp}}
+                                    </option>
                                   @endforeach
                                 </select>
                               </div>
@@ -72,21 +75,23 @@
                             </div>
                         </div>
 
+                      @if (isset($ordemServico) && (Auth::user()->type == 'funcionario' or Auth::user()->sindico == 1))
                         <div class="form-group">
-                            <label for="Tipo" class="col-md-4 control-label">Tipo</label>
+                            <label for="status" class="col-md-4 control-label">Status</label>
 
                             <div class="col-md-6">
                               <select class="form-control" name="status" required>
                                 <option value="">Status</option>
                                 @foreach ($status as $astatus)
-                                  <option value="{{$astatus}}">
-                                  {{-- {{(isset($user) ? ($user->type == $type ? "selected":""):(old('type') == $type ? "selected":""))}} > --}}
+                                  <option value="{{$astatus}}"
+                                  {{(isset($ordemServico) ? ($ordemServico->status == $astatus ? "selected":""):(old('status') == $astatus ? "selected":""))}} >
                                     {{$astatus}}
                                   </option>
                                 @endforeach
                               </select>
                             </div>
                         </div>
+                      @endif
 
                         @if (Auth::user()->sindico == 1 or Auth::user()->type == 'admin')
                           <div class="form-group">
@@ -97,8 +102,8 @@
                                 @foreach ($funcionarios as $funcionario)
                                   @foreach ($users as $user)
                                     @if ($user->id == $funcionario->id_users)
-                                      <option value="{{$funcionario->id}}">
-                                      {{-- {{(isset($user) ? ($user->type == $type ? "selected":""):(old('type') == $type ? "selected":""))}} > --}}
+                                      <option value="{{$funcionario->id}}"
+                                      {{(isset($ordemServico) ? ($ordemServico->id_funcionarios == $funcionario->id ? "selected":""):(old('id_funcionario') == $funcionario->id ? "selected":""))}} >
                                         {{$user->name}}
                                       </option>
                                     @endif
@@ -109,15 +114,34 @@
                           </div>
                         @endif
 
+                        @if (isset($ordemServico) && (Auth::user()->type == 'funcionario' or Auth::user()->sindico == 1))
 
+                          <div class="form-group">
+                              <label for="custo" class="col-md-4 control-label">Custo</label>
+
+                              <div class="col-md-6">
+                                  <input id="custo" type="number" step="any" class="form-control" name="custo" value="{{$ordemServico->custo or old('custo')}}" >
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label for="solucao" class="col-md-4 control-label">Solução</label>
+
+                              <div class="col-md-6">
+                                  <textarea class="form-control" maxlength="50" name="solucao">{{ $ordemServico->solucao or old('solucao') }}</textarea>
+                              </div>
+                          </div>
+
+                        @endif
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Criar Solicitiação
+                                    Solicitar
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

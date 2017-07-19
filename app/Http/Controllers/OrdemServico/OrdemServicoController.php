@@ -151,7 +151,16 @@ class OrdemServicoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ordemServico = $this->ordemServico->find($id);
+
+        $morador = $this->morador->find($ordemServico->id_moradors);
+        $users = $this->user->all();
+        $apartamentos = $this->apartamento->all();
+        $funcionarios = $this->funcionario->all();
+        $status = ['novo','atribuido','pendente','solucionado'];
+
+        $title = " - Editar OS";
+        return view('OrdemDeServico.create-edit',compact('ordemServico','title','morador','users','funcionarios','status','apartamentos'));
     }
 
     /**
@@ -161,9 +170,21 @@ class OrdemServicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OrdemServicoFormRequest $request, $id)
     {
-        //
+        $dataForm = $request->all();
+        $ordemServico = $this->ordemServico->find($id);
+
+        $user = $this->user->where('name',$dataForm['solicitante'])->first();
+
+        $update = $ordemServico->update($dataForm);
+
+        if ($update) {
+          return redirect()->route('os.lista',$user->id);
+        }else {
+          return redirect()->route('os.edit',$id);
+        }
+
     }
 
     /**
