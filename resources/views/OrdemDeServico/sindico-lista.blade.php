@@ -65,7 +65,7 @@
                         <a class="actions view" href="{{route('os.show',$ordemServico->id)}}">
                           <span class="glyphicon glyphicon-eye-open"/>
                         </a>
-                        <a href="{{route('acompanhamento.index')}}">
+                        <a href="{{route('acompanhamento.lista',$ordemServico->id)}}">
                           <span class="glyphicon glyphicon-comment"/>
                         </a>
                       </td>

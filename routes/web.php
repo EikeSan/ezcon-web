@@ -62,4 +62,6 @@ Route::get('/os/criar/{id}','OrdemServico\OrdemServicoController@newCreate')->na
 Route::post('/os/deletar/','OrdemServico\OrdemServicoController@deletar')->name('os.deletar');
 Route::resource('/os','OrdemServico\OrdemServicoController');
 
+//Rotas para acompanhamento
+Route::get('/acompanhamento/lista/{id}','Acompanhamento\AcompanhamentoController@lista')->name('acompanhamento.lista');
 Route::resource('/acompanhamento','Acompanhamento\AcompanhamentoController');

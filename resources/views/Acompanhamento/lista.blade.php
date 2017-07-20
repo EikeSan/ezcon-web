@@ -4,17 +4,34 @@
 
 
 <div class="container">
+  <a class="btn btn-success btn-add" href="{{route('acompanhamento.create',Auth::user()->id)}}">
+    <span class="glyphicon glyphicon-plus"/>
+    Novo acompanhamento
+  </a>
   <section class='box-comentario'>
-    <aside class='foto-contato'>
+    {{-- <aside class='foto-contato'>
       <div></div>
-    </aside>
+    </aside> --}}
     <article class='comentario'>
 
-      <header class='titulo-comentario'>
+      {{-- <header class='titulo-comentario'>
        <p>Titulo</p>
-     </header>
+     </header> --}}
 
-      Comentario
+      @foreach ($acompanhamentos as $acompanhamento)
+        {{$acompanhamento->acompanhamento}}
+
+        <header class='titulo-comentario'>
+          <a class="actions edit" href="{{route('acompanhamento.edit',$acompanhamento->id)}}">
+            <span class="glyphicon glyphicon-pencil"/>
+          </a>
+          <a class="actions view" href="{{route('acompanhamento.show',$acompanhamento->id)}}">
+            <span class="glyphicon glyphicon-eye-open"/>
+          </a>
+       </header>
+      @endforeach
+
+
     </article>
   </section>
 </div>
@@ -26,6 +43,7 @@ width: 500px;
 height: 200px;
 margin-left: auto;
 margin-right: auto;
+padding: 5px;
 }
 
 .foto-contato {
@@ -43,7 +61,7 @@ float: left;
 }
 
 .comentario:before {
-content: '';
+/*content: '';*/
 display: inline-block;
 position: absolute;
 border-color: transparent transparent #969696 transparent;
