@@ -99,12 +99,13 @@ class OrdemServicoController extends Controller
     public function newCreate($id)
     {
         $morador = $this->morador->where('id_users', $id)->first();
+        $moradores = $this->morador->all();
         $users = $this->user->all();
         $apartamentos = $this->apartamento->all();
         $funcionarios = $this->funcionario->all();
         $title = " - Nova OS";
         $status = ['novo','atribuido'];
-        return view('OrdemDeServico.create-edit',compact('title','status','morador','funcionarios','users','apartamentos'));
+        return view('OrdemDeServico.create-edit',compact('title','status','morador','funcionarios','users','apartamentos','moradores'));
     }
 
     public function create()

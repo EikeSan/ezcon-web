@@ -64,4 +64,5 @@ Route::resource('/os','OrdemServico\OrdemServicoController');
 
 //Rotas para acompanhamento
 Route::get('/acompanhamento/lista/{id}','Acompanhamento\AcompanhamentoController@lista')->name('acompanhamento.lista');
+Route::get('/acompanhamento/criar/{id}','Acompanhamento\AcompanhamentoController@criar')->name('acompanhamento.criar');
 Route::resource('/acompanhamento','Acompanhamento\AcompanhamentoController');

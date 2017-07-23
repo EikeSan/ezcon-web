@@ -34,7 +34,32 @@
                             </div>
                         </div>
 
-                        <input type="hidden" name="id_moradors" value="{{$morador->id}}">
+                        @if (Auth::user()->type != 'admin')
+                          <input type="hidden" name="id_moradors" value="{{$morador->id}}">
+                        @endif
+
+
+                        @if (Auth::user()->type == 'admin')
+                          <div class="form-group">
+                              <label for="morador" class="col-md-4 control-label">Morador</label>
+                              <div class="col-md-6">
+                                <select class="form-control" name="id_moradors">
+                                  <option value="">Morador</option>
+                                  @foreach ($moradores as $amorador )
+                                    @foreach ($users as $user)
+                                      @if ($user->id == $amorador->id_users)
+                                        <option value="{{$amorador->id}}">
+                                          {{-- {{(isset($ordemServico) ? ($ordemServico->id_apartamentos == $apartamento->id ? "selected":""):(old('id_apartamentos') == $apartamento->id ? "selected":""))}} > --}}
+                                          {{$user->name}}
+                                        </option>
+                                      @endif
+                                    @endforeach
+                                  @endforeach
+                                </select>
+                              </div>
+                          </div>
+                        @endif
+
 
                         @if (Auth::user()->sindico == 1 or Auth::user()->type == 'admin')
                           <div class="form-group">

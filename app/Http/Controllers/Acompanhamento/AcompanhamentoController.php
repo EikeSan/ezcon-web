@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Acompanhamento;
 
 //Imports de Requests
 use Illuminate\Http\Request;
-use App\Http\Requests\OrdemServicoFormRequest;
+use App\Http\Requests\AcompanhamentoFormRequest;
 
 //Import Modelo do Controller
 use App\Http\Controllers\Controller;
@@ -60,7 +60,8 @@ class AcompanhamentoController extends Controller
     {
       $title = " - Acompanhamento";
       $acompanhamentos = $this->acompanhamento->where('id_ordem_servicos', $id)->get();
-      return view('Acompanhamento.lista',compact('title','acompanhamentos'));
+      $ordemServico = $this->ordemServico->find($id);
+      return view('Acompanhamento.lista',compact('title','acompanhamentos','ordemServico'));
 
     }
 
@@ -69,15 +70,30 @@ class AcompanhamentoController extends Controller
         //
     }
 
+    public function criar($id)
+    {
+      $title = ' - Novo Acompanhamento';
+      $ordemServico = $this->ordemServico->find($id);
+      return view('Acompanhamento.create-edit',compact('title','ordemServico'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AcompanhamentoFormRequest $request)
     {
-        //
+        $dataForm = $request->all();
+        $insert = $this->acompanhamento->create($dataForm);
+
+        if ($insert) {
+          return redirect()->route('acompanhamento.lista',$dataForm['id_ordem_servicos']);
+        }else {
+          return redirect()->route('acompanhamento.criar',$dataForm['id_ordem_servicos']);
+        }
+
     }
 
     /**
@@ -88,7 +104,9 @@ class AcompanhamentoController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = ' - Ver Acompanhamento';
+        $acompanhamento = $this->acompanhamento->find($id);
+        return view('Acompanhamento.show',compact('title','acompanhamento'));
     }
 
     /**
@@ -99,7 +117,10 @@ class AcompanhamentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tile = ' - Editar Acompanhamento';
+        $acompanhamento = $this->acompanhamento->find($id);
+
+        return view('Acompanhamento.create-edit',compact('title','acompanhamento'));
     }
 
     /**
@@ -109,9 +130,17 @@ class AcompanhamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AcompanhamentoFormRequest $request, $id)
     {
-        //
+        $dataForm = $request->all();
+        $acompanhamento = $this->acompanhamento->find($id);
+        $update = $acompanhamento->update($dataForm);
+
+        if ($update) {
+          return redirect()->route('acompanhamento.lista',$acompanhamento->id_ordem_servicos);
+        }else{
+          return redirect()->route('acompanhamento.edit',$id)->withErrors('Falha ao Editar');
+        }
     }
 
     /**
@@ -122,6 +151,14 @@ class AcompanhamentoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $acompanhamento = $this->acompanhamento->find($id);
+
+        $delete = $acompanhamento->delete();
+
+        if ($delete) {
+          return redirect()->route('acompanhamento.lista',$acompanhamento->id_ordem_servicos);
+        }else {
+          return redirect()->route('acompanhamento.show',id)->withErrors('Falha ao Deletar');
+        }
     }
 }

@@ -4,22 +4,21 @@
 
 
 <div class="container">
-  <a class="btn btn-success btn-add" href="{{route('acompanhamento.create',Auth::user()->id)}}">
+  <a class="btn btn-success btn-add" href="{{route('acompanhamento.criar',$ordemServico->id)}}">
     <span class="glyphicon glyphicon-plus"/>
     Novo acompanhamento
   </a>
-  <section class='box-comentario'>
-    {{-- <aside class='foto-contato'>
-      <div></div>
-    </aside> --}}
-    <article class='comentario'>
+  @foreach ($acompanhamentos as $acompanhamento)
+    <section class='box-comentario'>
 
-      {{-- <header class='titulo-comentario'>
-       <p>Titulo</p>
-     </header> --}}
+      {{-- <aside class='foto-contato'>
+        <div></div>
+      </aside> --}}
+      <article class='comentario'>
 
-      @foreach ($acompanhamentos as $acompanhamento)
-        {{$acompanhamento->acompanhamento}}
+        {{-- <header class='titulo-comentario'>
+         <p>Titulo</p>
+       </header> --}}
 
         <header class='titulo-comentario'>
           <a class="actions edit" href="{{route('acompanhamento.edit',$acompanhamento->id)}}">
@@ -29,21 +28,22 @@
             <span class="glyphicon glyphicon-eye-open"/>
           </a>
        </header>
-      @endforeach
+        <p>{{$acompanhamento->acompanhamento}}</p>
 
-
-    </article>
-  </section>
+      </article>
+    </section>
+  @endforeach
 </div>
 
 
 <style type="text/css">
 .box-comentario {
 width: 500px;
-height: 200px;
+height: 150px;
 margin-left: auto;
 margin-right: auto;
 padding: 5px;
+margin-bottom: 5px;
 }
 
 .foto-contato {
@@ -55,7 +55,7 @@ display: block;
 
 .comentario {
 width: 398px;
-height: 200px;
+height: 150px;
 background: #e3e3e3;
 float: left;
 }
@@ -84,9 +84,26 @@ border-radius: 50%;
 
 .titulo-comentario {
 width: 100%;
-height: 40px;
+height: 30px;
 background: #969696;
 }
 
+p{
+  margin: 10px;
+  font-style: oblique;
+  font-family: fantasy;
+  font-size: 16px;
+}
+
+.actions{
+  float: right;
+  margin: 7px;
+}
+
+.btn-add{
+  margin-left: auto;
+  margin-right: auto
+
+}
 </style>
 @endsection
