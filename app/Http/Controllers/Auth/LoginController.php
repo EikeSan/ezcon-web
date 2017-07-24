@@ -36,7 +36,11 @@ class LoginController extends Controller
           break;
 
         case 'morador':
-          return redirect('/morador');
+          if ($user->sindico == 1) {
+            return redirect('/sindico');
+          }else {
+            return redirect('/morador');
+          }
           break;
 
         case 'sindico':

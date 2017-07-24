@@ -25,7 +25,11 @@ class RedirectIfAuthenticated
                 break;
 
               case 'morador':
-                return redirect('/morador');
+                if (Auth::user()->sindico == 1) {
+                  return redirect('/sindico');
+                }else {
+                  return redirect('/morador');
+                }                
                 break;
 
               case 'sindico':

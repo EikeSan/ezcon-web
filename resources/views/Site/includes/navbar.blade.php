@@ -26,7 +26,7 @@
                 <ul class="nav navbar-nav navbar-left">
 
                   <li>
-                    <a href="{{route('index')}}">Home</a>
+                    <a href="{{route('login')}}">Home</a>
                   </li>
 
                   <li>
